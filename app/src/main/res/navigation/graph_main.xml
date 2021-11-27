@@ -24,7 +24,7 @@
         tools:layout="@layout/fragment_note_detail" >
         <argument
             android:name="id"
-            app:argType="integer" />
+            app:argType="string" />
         <argument
             android:name="title"
             app:argType="string" />

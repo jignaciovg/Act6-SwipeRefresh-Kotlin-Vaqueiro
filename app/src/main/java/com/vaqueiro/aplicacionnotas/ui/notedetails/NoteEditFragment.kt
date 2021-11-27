@@ -16,6 +16,7 @@ import com.vaqueiro.aplicacionnotas.data.local.AppDatabase
 import com.vaqueiro.aplicacionnotas.data.local.LocalDataSource
 import com.vaqueiro.aplicacionnotas.data.model.Note
 import com.vaqueiro.aplicacionnotas.data.remote.ApiClient
+import com.vaqueiro.aplicacionnotas.data.remote.FireBaseService
 import com.vaqueiro.aplicacionnotas.data.remote.NoteDataSource
 import com.vaqueiro.aplicacionnotas.databinding.FragmentNoteEditBinding
 import com.vaqueiro.aplicacionnotas.presentation.NoteViewModel
@@ -29,7 +30,7 @@ class NoteEditFragment : Fragment(R.layout.fragment_note_edit) {
     private val viewModel by viewModels<NoteViewModel> {
         NoteViewModelFactory(NoteRepositoryImp(
             LocalDataSource(AppDatabase.getDataBase(this.requireContext()).noteDao()),
-            NoteDataSource(ApiClient.service)))
+            NoteDataSource(FireBaseService())))
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -39,7 +40,7 @@ class NoteEditFragment : Fragment(R.layout.fragment_note_edit) {
 
         binding.btnAddNote.setOnClickListener{
 
-            var note = Note(0,binding.editTitle.text.toString(),binding.editContent.text.toString(),binding.editImageUrl.text.toString())
+            var note = Note("",binding.editTitle.text.toString(),binding.editContent.text.toString(),binding.editImageUrl.text.toString())
 
             viewModel.saveNote(note).observe(viewLifecycleOwner, Observer { result ->
                 when(result){

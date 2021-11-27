@@ -17,6 +17,7 @@ import com.vaqueiro.aplicacionnotas.data.local.AppDatabase
 import com.vaqueiro.aplicacionnotas.data.local.LocalDataSource
 import com.vaqueiro.aplicacionnotas.data.model.Note
 import com.vaqueiro.aplicacionnotas.data.remote.ApiClient
+import com.vaqueiro.aplicacionnotas.data.remote.FireBaseService
 import com.vaqueiro.aplicacionnotas.data.remote.NoteDataSource
 import com.vaqueiro.aplicacionnotas.databinding.FragmentNotesBinding
 import com.vaqueiro.aplicacionnotas.presentation.NoteViewModel
@@ -34,8 +35,7 @@ class NotesFragment : Fragment(R.layout.fragment_notes) {
         NoteViewModelFactory(
             NoteRepositoryImp(
                 LocalDataSource(AppDatabase.getDataBase(this.requireContext()).noteDao()),
-                NoteDataSource(ApiClient.service)
-            )
+                NoteDataSource(FireBaseService()))
         )
     }
 

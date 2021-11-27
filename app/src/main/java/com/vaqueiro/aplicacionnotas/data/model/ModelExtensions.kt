@@ -10,14 +10,14 @@ fun List<NoteEntity>.toNoteList():NoteList{
 }
 
 fun Note.toNoteEntity():NoteEntity = NoteEntity(
-    this.id,
+    0,
     this.title,
     this.content,
     this.image
 )
 
 fun NoteEntity.toNote():Note = Note(
-    this.id,
+    "",
     this.title,
     this.content,
     this.imageUrl
